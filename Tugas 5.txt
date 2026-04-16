@@ -1,0 +1,10 @@
+*Tugas Praktikum Sistem Pakar 2*
+
+Buatlah sebuah aplikasi sistem pakar diagnosa penyakit THT berbasis console/GUI
+berdasarkan data di modul! Upload source code hasil pengerjaan studi kasus ke GitHub dengan nama repositori sebagai berikut,
+NIM-PraktikumKB-Pertemuan5
+
+*Link Pengumpulan Tugas 5 Praktikum Kecerdasan Buatan Pertemuan 5:*
+🔗https://forms.gle/QesRLrqmEseGduAR9
+
+*Deadline*: 21 April 2026 23.59 ‼️
