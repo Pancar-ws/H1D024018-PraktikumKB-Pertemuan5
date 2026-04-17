@@ -1,143 +1,69 @@
 # Sistem Pakar Diagnosa Penyakit THT
 
-## Penjelasan Source Code sisPak_2.py
+Sistem ini merupakan aplikasi **Expert System** (Sistem Pakar) yang memiliki fungsi untuk mendiagnosa penyakit Telinga, Hidung, dan Tenggorokan (THT) berdasarkan gejala yang dialami oleh pengguna.
 
-Sistem ini merupakan aplikasi **Expert System** (Sistem Pakar) untuk mendiagnosa penyakit Telinga, Hidung, dan Tenggorokan (THT) berdasarkan gejala yang dialami oleh pengguna.
+## Daftar File
 
----
-
-## Struktur dan Fungsi Utama
-
-### 1. **Fungsi `tampilkan_daftar_gejala()`**
-```python
-def tampilkan_daftar_gejala():
-```
-
-**Fungsi:**
-- Menampilkan daftar lengkap gejala yang tersedia dalam sistem
-- Menyimpan 37 gejala (G1 - G37) dalam kamus/dictionary yang berisi kode gejala dan deskripsinya
-
-**Gejala yang tersedia:**
-- G1: Nafas abnormal
-- G2: Suara serak
-- G3: Perubahan kulit
-- G4: Telinga penuh
-- ...dan 33 gejala lainnya hingga G37
-
-**Proses:**
-1. Membuat dictionary dengan pasangan kode gejala dan deskripsi gejala
-2. Menampilkan header sistem pakar dengan garis pemisah
-3. Menampilkan gejala dalam format 2 kolom untuk kemudahan dibaca
-4. Mengembalikan dictionary gejala
+| File | Deskripsi |
+|------|-----------|
+| `sisPak_2.py` | Versi command-line (CLI) dari sistem pakar |
+| `sisPak_gui.py` | Versi graphical user interface (GUI) dari sistem pakar |
+| `README.md` | Dokumentasi sistem |
 
 ---
 
-### 2. **Fungsi `diagnosa(gejala_input)`**
-```python
-def diagnosa(gejala_input):
-```
+## sisPak_2.py - Versi CLI
 
-**Fungsi:**
-- Melakukan diagnosa dan mencocokkan gejala yang diinputkan dengan database penyakit
-- Menghitung persentase kecocokan antara gejala input dan kriteria penyakit
-
-**Database Penyakit (23 penyakit):**
-Sistem memiliki database 23 penyakit THT, antara lain:
-- Tonsilitis (G37, G12, G5, G27, G6, G21)
-- Sinusitis (4 jenis: Maksilaris, Frontalis, Edmoidalis, Sfenoidalis)
-- Kanker Laring, Kanker Tonsil, Kanker Leher & Kepala
-- Otitis Media Akut, Meniere, Vertigo Postular
-- Dan lainnya...
-
-**Algoritma Pencocokan:**
-1. Untuk setiap penyakit, mencari irisan (intersection) antara gejala input dan gejala penyakit
-2. Menghitung persentase kecocokan: `(jumlah gejala cocok / total gejala penyakit) × 100%`
-3. Menyimpan hasil dalam list berisi: nama penyakit, persentase kecocokan, dan gejala yang cocok
-4. Mengurutkan hasil berdasarkan persentase kecocokan dari tertinggi ke terendah
+Sistem pakar CLI ini memiliki fitur sebagai berikut:
+- Database: 37 gejala (G1-G37) dan 23 penyakit THT
+- Algoritma: Set intersection matching dengan persentase kecocokan
+- Input: Kode gejala dipisahkan koma (contoh: G37, G12, G5)
+- Output: Hasil diagnosa terurut berdasarkan tingkat kecocokan
 
 ---
 
-### 3. **Fungsi `main()`**
-```python
-def main():
-```
+## sisPak_gui.py - Versi GUI
 
-**Alur Program:**
-
-1. **Tampilkan Daftar Gejala**
-   - Memanggil `tampilkan_daftar_gejala()` untuk menampilkan opsi gejala
-
-2. **Input dari Pengguna**
-   - Meminta user memasukkan kode gejala (misal: G37, G12, G5)
-   - Input dipisahkan dengan koma
-   - Mengubah input menjadi uppercase dan membersihkan spasi
-   - Split berdasarkan koma untuk mendapatkan list kode gejala
-
-3. **Validasi Input**
-   - Memeriksa apakah kode gejala yang diinputkan valid (ada dalam dictionary)
-   - Jika tidak ada gejala valid, program berhenti
-
-4. **Tampilkan Gejala yang Dipilih**
-   - Menampilkan daftar gejala yang telah divalidasi beserta deskripsinya
-
-5. **Proses Diagnosa**
-   - Memanggil fungsi `diagnosa()` dengan gejala yang valid
-   - Menampilkan hasil diagnosa (3 penyakit teratas dengan persentase kecocokan tertinggi)
-   - Untuk setiap hasil, ditampilkan:
-     - Nama penyakit
-     - Persentase kecocokan
-     - Daftar gejala yang cocok
-
----
-
-## Cara Kerja Sistem
-
-### Contoh Input dan Output:
-
-**Input:**
-```
-Masukkan kode gejala: G37, G12, G5
-```
-
-**Output:**
-```
-Gejala yang Anda alami:
-- G37: Demam
-- G12: Sakit kepala
-- G5: Nyeri bicara menelan
-
-HASIL DIAGNOSA:
-1. Penyakit: Tonsilitis (Kecocokan: 50.00%)
-   Gejala cocok: Demam, Sakit kepala, Nyeri bicara menelan
-2. Penyakit: Laringitis (Kecocokan: 40.00%)
-   Gejala cocok: Demam, Nyeri bicara menelan
-...
-```
+Sistem pakar dengan gui menggunakan tkinter juga memiliki fitur diantaranya:
+- Database: Sama seperti sisPak_2.py
+- Input: Pilih gejala dari listbox (multiple selection)
+- Komponen: Title label, instruction label, scrollable listbox, diagnosis button, scrolled text result
+- Window: 650x550 pixel
+- Output: Hasil diagnosa dengan nama penyakit, persentase kecocokan, dan gejala yang cocok
 
 ---
 
 ## Fitur Utama
 
-1. **Interface Interaktif** - User-friendly dengan format tampilan yang rapi
-2. **Database Penyakit** - 23 penyakit THT dengan kriteria gejala masing-masing
-3. **Fuzzy Matching** - Menghitung persentase kecocokan, bukan hanya pencocokan 100%
-4. **Validasi Input** - Memastikan input gejala valid sebelum proses diagnosa
-5. **Hasil Terurut** - Menampilkan hasil berdasarkan tingkat akurasi/kecocokan
-
----
-
-## Teknologi yang Digunakan
-
-- **Bahasa:** Python 3
-- **Tipe Sistem:** Expert System (Rule-based System)
-- **Metode Diagnosa:** Similarity Matching dengan perhitungan persentase
+1. **Database Lengkap** - 37 gejala & 23 penyakit THT
+2. **Similarity Matching** - Perhitungan persentase kecocokan gejala
+3. **Hasil Terurut** - Menampilkan diagnosa dari akurasi tertinggi ke terendah
+4. **Validasi Input** - Memastikan input gejala valid
+5. **Dual Interface** - Command-line & graphical options
 
 ---
 
 ## Cara Menjalankan
 
+**Versi CLI:**
 ```bash
 python sisPak_2.py
 ```
+Input kode gejala (G1-G37) dipisahkan koma. Tampil hasil diagnosa terurut.
+
+**Versi GUI:**
+```bash
+python sisPak_gui.py
+```
+Pilih gejala dari list, klik tombol "Mulai Diagnosa", lihat hasil di area teks.
 
 ---
+
+## Perbandingan
+
+| Aspek | sisPak_2.py | sisPak_gui.py |
+|-------|------------|-------------|
+| Interface | Command-line | Graphical (tkinter) |
+| Input | Ketik kode gejala | Pilih dari list |
+| User-Friendly | Medium | High |
+| Dependencies | Python standard | + tkinter |
